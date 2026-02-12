@@ -1,110 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My First Website</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rust | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Share Tech Mono', monospace;
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #140014 0%, #000000 60%);
+      color: #b026ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
 
-        body {
-            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-            color: white;
-        }
+    /* Snowfall Canvas */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-        header {
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.6);
-        }
+    .container {
+      position: relative;
+      z-index: 1;
+      background: rgba(20, 0, 30, 0.85);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px #b026ff55;
+      width: 90%;
+      max-width: 500px;
+      backdrop-filter: blur(10px);
+    }
 
-        header h1 {
-            font-size: 24px;
-            letter-spacing: 2px;
-        }
+    .profile-pic {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid #b026ff;
+      margin: 0 auto 20px auto;
+      background: url('https://via.placeholder.com/140') center/cover no-repeat;
+      box-shadow: 0 0 20px #b026ff;
+      transition: 0.3s ease;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            transition: 0.3s;
-        }
+    .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px #b026ff;
+    }
 
-        nav a:hover {
-            color: #00bfff;
-        }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
 
-        .hero {
-            height: 90vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-        }
+    p {
+      font-size: 0.95rem;
+      margin-bottom: 25px;
+      color: #cccccc;
+    }
 
-        .hero h2 {
-            font-size: 50px;
-            margin-bottom: 20px;
-        }
+    .socials {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-        .hero p {
-            font-size: 20px;
-            opacity: 0.8;
-            margin-bottom: 30px;
-        }
+    .socials a {
+      text-decoration: none;
+      color: #b026ff;
+      padding: 10px;
+      border: 1px solid #b026ff;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
 
-        .btn {
-            padding: 12px 25px;
-            background: #00bfff;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
+    .socials a:hover {
+      background: #b026ff;
+      color: #000;
+      box-shadow: 0 0 15px #b026ff;
+    }
 
-        .btn:hover {
-            background: white;
-        }
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #111;
-            font-size: 14px;
-            opacity: 0.7;
-        }
-    </style>
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .glitch::before {
+      top: -2px;
+      color: #ff00ff;
+      clip: rect(0, 900px, 0, 0);
+      animation: glitchTop 2s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      bottom: -2px;
+      color: #8a2be2;
+      clip: rect(0, 900px, 0, 0);
+      animation: glitchBottom 2s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      10% { clip: rect(0, 9999px, 20px, 0); }
+      20% { clip: rect(0, 9999px, 0, 0); }
+      30% { clip: rect(0, 9999px, 15px, 0); }
+      40% { clip: rect(0, 9999px, 0, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      10% { clip: rect(30px, 9999px, 60px, 0); }
+      20% { clip: rect(0, 9999px, 0, 0); }
+      30% { clip: rect(50px, 9999px, 80px, 0); }
+      40% { clip: rect(0, 9999px, 0, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+  </style>
 </head>
 <body>
+  <canvas id="snow"></canvas>
 
-<header>
-    <h1>MyBrand</h1>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </nav>
-</header>
+  <div class="container">
+    <div class="profile-pic"></div>
+    <h1 class="glitch" data-text="RUST">RUST</h1>
+    <p>
+      Teen developer. Code breaker. Chaos creator.<br>
+      Building projects, breaking limits, and living in the terminal.
+    </p>
+    <div class="socials">
+      <a href="#" target="_blank">GitHub</a>
+      <a href="#" target="_blank">YouTube</a>
+      <a href="#" target="_blank">Twitch</a>
+      <a href="#" target="_blank">Discord</a>
+      <a href="#" target="_blank">Twitter / X</a>
+    </div>
+  </div>
 
-<section class="hero">
-    <h2>Welcome to My Website</h2>
-    <p>This website was built from scratch.</p>
-    <a href="#" class="btn">Get Started</a>
-</section>
+  <script>
+    const canvas = document.getElementById('snow');
+    const ctx = canvas.getContext('2d');
 
-<footer>
-    © 2026 MyBrand. All rights reserved.
-</footer>
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
+    let snowflakes = [];
+
+    function createSnowflakes() {
+      for (let i = 0; i < 120; i++) {
+        snowflakes.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 3 + 1,
+          speed: Math.random() * 1 + 0.5
+        });
+      }
+    }
+
+    function drawSnowflakes() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(176, 38, 255, 0.8)';
+      ctx.beginPath();
+
+      for (let flake of snowflakes) {
+        ctx.moveTo(flake.x, flake.y);
+        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+      }
+
+      ctx.fill();
+      moveSnowflakes();
+    }
+
+    function moveSnowflakes() {
+      for (let flake of snowflakes) {
+        flake.y += flake.speed;
+        if (flake.y > canvas.height) {
+          flake.y = 0;
+          flake.x = Math.random() * canvas.width;
+        }
+      }
+    }
+
+    function updateSnowfall() {
+      drawSnowflakes();
+      requestAnimationFrame(updateSnowfall);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    createSnowflakes();
+    updateSnowfall();
+  </script>
 </body>
 </html>
