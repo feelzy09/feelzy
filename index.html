@@ -4,7 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feelzy | Portfolio</title>
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     * {
       margin: 0;
@@ -25,7 +29,6 @@
       position: relative;
     }
 
-    /* Snowfall Canvas */
     canvas {
       position: fixed;
       top: 0;
@@ -97,6 +100,58 @@
       box-shadow: 0 0 15px #b026ff;
     }
 
+    /* Small icon row */
+    .small-socials {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .small-socials a {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid #b026ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b026ff;
+      text-decoration: none;
+      font-size: 1.3rem;
+      transition: 0.3s ease;
+    }
+
+    /* Brand glow effects */
+    .small-socials a.tiktok:hover {
+      color: #fff;
+      box-shadow: 0 0 20px #ff0050;
+      border-color: #ff0050;
+      transform: scale(1.15);
+    }
+
+    .small-socials a.twitch:hover {
+      color: #fff;
+      box-shadow: 0 0 20px #9146ff;
+      border-color: #9146ff;
+      transform: scale(1.15);
+    }
+
+    .small-socials a.instagram:hover {
+      color: #fff;
+      box-shadow: 0 0 20px #e1306c;
+      border-color: #e1306c;
+      transform: scale(1.15);
+    }
+
+    .small-socials a.snapchat:hover {
+      color: #fff;
+      box-shadow: 0 0 20px #fffc00;
+      border-color: #fffc00;
+      transform: scale(1.15);
+    }
+
+    /* Glitch */
     .glitch {
       position: relative;
       display: inline-block;
@@ -114,47 +169,43 @@
     .glitch::before {
       top: -2px;
       color: #ff00ff;
-      clip: rect(0, 900px, 0, 0);
       animation: glitchTop 2s infinite linear alternate-reverse;
     }
 
     .glitch::after {
       bottom: -2px;
       color: #8a2be2;
-      clip: rect(0, 900px, 0, 0);
       animation: glitchBottom 2s infinite linear alternate-reverse;
     }
 
     @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 0, 0); }
+      0%,100% { clip: rect(0, 9999px, 0, 0); }
       10% { clip: rect(0, 9999px, 20px, 0); }
-      20% { clip: rect(0, 9999px, 0, 0); }
       30% { clip: rect(0, 9999px, 15px, 0); }
-      40% { clip: rect(0, 9999px, 0, 0); }
-      100% { clip: rect(0, 9999px, 0, 0); }
     }
 
     @keyframes glitchBottom {
-      0% { clip: rect(0, 9999px, 0, 0); }
+      0%,100% { clip: rect(0, 9999px, 0, 0); }
       10% { clip: rect(30px, 9999px, 60px, 0); }
-      20% { clip: rect(0, 9999px, 0, 0); }
       30% { clip: rect(50px, 9999px, 80px, 0); }
-      40% { clip: rect(0, 9999px, 0, 0); }
-      100% { clip: rect(0, 9999px, 0, 0); }
     }
   </style>
 </head>
+
 <body>
   <canvas id="snow"></canvas>
 
   <div class="container">
     <div class="profile-pic"></div>
+
     <h1 class="glitch" data-text="FEELZY">FEELZY</h1>
+
     <p>
-      Hmu on discord to contact me. If your looking to buy something check my elderado shop.
-      Any random half skidded/ai projects are gonna be on my github .
-      And for my other socials lets be honest who knows if imma even post on even half of them.
+      Hmu on discord to contact me. If you're looking to buy something check my elderado shop.
+      Any random half skidded/ai projects are gonna be on my github.
+      And for my other socials lets be honest who knows if imma even post.
     </p>
+
     <div class="socials">
       <a href="https://github.com/feelzy09" target="_blank">GitHub</a>
       <a href="https://www.youtube.com/@CelestialOT" target="_blank">YouTube</a>
@@ -162,6 +213,22 @@
       <a href="https://discord.gg/WmRK6XtB8f" target="_blank">Discord</a>
       <a href="https://x.com/Celestial_999" target="_blank">Twitter / X</a>
     </div>
+
+    <div class="small-socials">
+      <a href="https://www.tiktok.com/" target="_blank" class="tiktok">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
+      <a href="https://www.twitch.tv/" target="_blank" class="twitch">
+        <i class="fa-brands fa-twitch"></i>
+      </a>
+      <a href="https://www.instagram.com/" target="_blank" class="instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://www.snapchat.com/" target="_blank" class="snapchat">
+        <i class="fa-brands fa-snapchat"></i>
+      </a>
+    </div>
+
   </div>
 
   <script>
